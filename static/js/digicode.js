@@ -1,14 +1,11 @@
-iPadDigit = function(selector, api, delay, eventType, inputDisplay) {
+iPadDigit = function(selector, api, delay) {
   this.selector = $(selector).not('.no-action');
   this.api      = api;
-  this.event    = eventType;
 
   this.inputs   = [];
 
   this.timer    = null;
   this.delay    = delay;
-
-  this.inputDisplay = inputDisplay;
 
   this.passwordSize = 5;
 };
@@ -16,7 +13,7 @@ iPadDigit = function(selector, api, delay, eventType, inputDisplay) {
 iPadDigit.prototype.handleInputs = function() {
   var self = this;
 
-  this.selector.on(this.event, function() {
+  this.selector.on('click tap', function() {
     var value = $(this).text();
 
     if (value === 'Annuler') {
@@ -56,7 +53,7 @@ iPadDigit.prototype.correctInput = function() {
 iPadDigit.prototype.displayInputs = function() {
   if (this.inputDisplay) {
     var self = this;
-    var displays = $(self.inputDisplay);
+    var displays = $("#digicode .password li");
 
     for(var i =0; i< this.passwordSize; i++) {
       displays.eq(i).text(self.inputs[i] || ' ');
@@ -93,13 +90,10 @@ iPadDigit.prototype.sendData = function() {
 
 ;(function($){
   $.extend($.fn, {
-    digicode: function(opts){
+    digicode: function(opts) {
       api   = opts.api || '/';
       delay = opts.resetDelay * 1000 || 10000;
-      event = opts.eventType || 'tap';
-      inputDisplay = opts.inputDisplay || false;
-
-      digi  = new iPadDigit(this, api, delay, event, inputDisplay);
+      digi  = new iPadDigit(this, api, delay);
       digi.handleInputs();
     }
   });
