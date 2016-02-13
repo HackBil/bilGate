@@ -21,15 +21,16 @@ python manage.py runserver <ip:port>
 
 Documentation
 -------------
-#POST /open
-##body
+##POST /open
+####body
 ```json
 {
   "code": "A1234"
 }
 ```
 
-## Returns
+#### Returns
 *200 OK* If door is opened
+
 *401 Unauthorized* If code is wrong
 
