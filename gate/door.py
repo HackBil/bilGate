@@ -1,7 +1,7 @@
 import time
 from threading import Thread
 
-from gate.model import Open
+from gate.models import Open
 
 # import RPi.GPIO as GPIO
 # GPIO.setmode(GPIO.BCM)
