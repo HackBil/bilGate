@@ -4,11 +4,11 @@
     <head>
         <title>bilGate</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
         <!-- BOOTSTRAP CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link href="{% static 'css/empty.css' %}" rel="stylesheet">
+        <link href="{% static 'css/digicode.css' %}" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,19 +18,71 @@
         <![endif]-->
     </head>
     <body>
-        <div class="container">
-            <form class="form-inline" role="form" action="./open" method="post">
-                <div class="col-sm-6">
-                    <input class="form-control" type="text" name="code"></input>
+        <div class="container-fluid">
+            <div class="alert alert-danger" id="code_fail" style="display: none;">
+                <a href="#" class="close" aria-label="close" onclick="$('.alert-danger').hide()">&times;</a>
+                <p><strong>Raté!</strong> Le code saisi est invalide. En cas de besoin, n'hésitez pas à demander de l'aide sur Flowdock !</p>
+            </div>
+            <div class="alert alert-success" id="code_success" style="display: none;">
+                <a href="#" class="close" aria-label="close" onclick="$('.alert-success').hide()">&times;</a>
+                <p><strong> La porte est ouverte !</strong></p>
+            </div>
+            <div class="col-xs-12 masterkey-app ">
+                <div class="col-xs-12" id="digicode">
+                    <h1>Enter passcode</h1>
+                    <ul class="col-xs-12 password">
+                        <li class="col-xs-2"></li>
+                        <li class="col-xs-2"></li>
+                        <li class="col-xs-2"></li>
+                        <li class="col-xs-2"></li>
+                        <li class="col-xs-2"></li>
+                    </ul>
+
+                    <ul class="code-panel">
+                        <div class="ipad-row ipad-head-row">
+                            <li class="col-xs-4 key">1</li>
+                            <li class="col-xs-4 key">2</li>
+                            <li class="col-xs-4 key">3</li>
+                        </div>
+                        <div class="ipad-row">
+                            <li class="col-xs-4 key">4</li>
+                            <li class="col-xs-4 key">5</li>
+                            <li class="col-xs-4 key">6</li>
+                        </div>
+                        <div class="ipad-row">
+                            <li class="col-xs-4 key">7</li>
+                            <li class="col-xs-4 key">8</li>
+                            <li class="col-xs-4 key">9</li>
+                        </div>
+                        <div class="ipad-row">
+                            <li class="col-xs-4 key">A</li>
+                            <li class="col-xs-4 key">0</li>
+                            <li class="col-xs-4 key">B</li>
+                        </div>
+                        <div class="ipad-row ipad-foot-row">
+                            <li class="col-xs-6 simple-key delete text-default">Annuler</li>
+                            <li class="col-xs-6 simple-key delete text-default">Corriger</li>
+                        </div>
+                    </ul>
                 </div>
-                <div class="col-sm-4">
-                    <input type="submit" class="btn btn-primary" value="Ouvrir"></input>
-                </div>
-            </form>
+            </div>
         </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <!-- BOOTSTRAP JS -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        <script src="{% static 'js/zepto.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/digicode.js' %}" type="text/javascript"></script>
+        <script type="text/javascript">
+        $(function() {
+            $("#digicode .code-panel li").digicode({
+                api: 'http://192.168.20:8000/open',
+                resetDelay: 10,
+                eventType: 'click tap',
+                inputDisplay: '#digicode .password li'
+            });
+        });
+        </script>
     </body>
 </html>

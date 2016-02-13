@@ -1,0 +1,100 @@
+#digicode {
+    font-family: 'HelveticaNeue-UltraLight', 'HelveticaNeue-Light', 'HelveticaNeue', 'Helvetica', 'Arial', sans-serif;
+}
+
+#digicode h1 {
+  font-family: inherit;
+  text-align: center;
+  font-size: 1.9em;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+
+#digicode .password {
+  height: 2.5em;
+}
+
+#digicode ul {
+    list-style: none;
+}
+
+#digicode .password li {
+  display: inline-block;
+  font-size: 2.5em;
+}
+
+#digicode .password li.filled {
+  background-color: rgba(0, 0, 0, 0.85);
+  border: none;
+}
+
+#digicode .code-panel {
+}
+
+#digicode .no-action:hover {
+    background: #464545;
+    cursor: default;
+}
+
+#digicode .ipad-row {
+
+  font-size: 3.4em;
+}
+
+#digicode .ipad-row .key-lg {
+}
+
+#digicode .ipad-row .simple-key {
+  cursor: pointer;
+
+  display: inline-block;
+  font-size: 0.6em;
+}
+
+#digicode .ipad-row .key {
+  cursor: pointer;
+
+  display: inline-block;
+
+  border-radius: 75px;
+
+  text-align: center;
+}
+
+#digicode .ipad-row .key:hover {
+  color: #ddc16b;
+}
+
+/* Old style */
+
+#digicode .btn-xlg {
+    font-size: 3.4em;
+}
+
+#digicode .head-row .btn, #digicode .no-borders .btn {
+    border-bottom: 0;
+}
+
+/* Border radius */
+#digicode .head-row :first-child {
+    border-bottom-left-radius: 0;
+}
+
+#digicode .head-row :last-child {
+    border-bottom-right-radius: 0;
+}
+
+#digicode .foot-row :first-child {
+    border-top-left-radius: 0;
+}
+#digicode .foot-row :last-child {
+    border-top-right-radius: 0;
+
+}
+
+#digicode .no-borders .btn {
+    border-radius: 0;
+}
+
+#digicode .btn.delete {
+}
