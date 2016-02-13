@@ -10,20 +10,26 @@ Install
 * `pip install -r requirements.txt` : install all requirements
 
 
-Configure
----------
-
-#### env:
-```bash
-export CODE="the secret code"
-```
-
 How to use
 ----------
 ## In development
 #### Start the server
 ```bash
-pyhton manage.py runserver <ip:port>
+python manage.py runserver <ip:port>
 ```
-Connect to your server and let you be guided by our awesome UI
+
+
+Documentation
+-------------
+#POST /open
+##body
+```json
+{
+  "code": "A1234"
+}
+```
+
+## Returns
+*200 OK* If door is opened
+*401 Unauthorized* If code is wrong
 
