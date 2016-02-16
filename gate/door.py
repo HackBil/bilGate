@@ -9,9 +9,8 @@ from gate.models import Open
 
 
 class OpenDoor(Thread):
-    def __init__(self, lettre):
+    def __init__(self):
         Thread.__init__(self)
-        self.lettre = lettre
 
     def run(self):
         # GPIO.output(12, GPIO.HIGH)
