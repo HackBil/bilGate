@@ -9,9 +9,6 @@ GPIO.setup(12, GPIO.OUT)
 
 
 class OpenDoor(Thread):
-    def __init__(self):
-        Thread.__init__(self)
-
     def run(self):
         GPIO.output(12, GPIO.HIGH)
         time.sleep(10)
@@ -20,4 +17,5 @@ class OpenDoor(Thread):
 
 def open():
     Open().save()  # Log the date of opening
-    OpenDoor.start()
+
+    OpenDoor().start()
