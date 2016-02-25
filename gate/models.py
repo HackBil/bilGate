@@ -6,4 +6,4 @@ class Open(models.Model):
 
 
 class Code(models.Model):
-    code = models.CharField(unique=True)
+    code = models.CharField(max_length=64, unique=True)
