@@ -3,9 +3,9 @@ from threading import Thread
 
 from gate.models import Open
 
-# import RPi.GPIO as GPIO
-# GPIO.setmode(GPIO.BCM)
-# GPIO.setup(12, GPIO.OUT)
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(12, GPIO.OUT)
 
 
 class OpenDoor(Thread):
@@ -13,9 +13,9 @@ class OpenDoor(Thread):
         Thread.__init__(self)
 
     def run(self):
-        # GPIO.output(12, GPIO.HIGH)
+        GPIO.output(12, GPIO.HIGH)
         time.sleep(10)
-        # GPIO.output(12, GPIO.LOW)
+        GPIO.output(12, GPIO.LOW)
 
 
 def open():
