@@ -1,13 +1,17 @@
 import time
 from threading import Thread
-
 from gate.models import Open
 
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except:
+    import gate.mock_gpio as GPIO
+
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(12, GPIO.OUT)
-GPIO.output(12, GPIO.LOW) # Set default as low
+GPIO.output(12, GPIO.LOW)  # Set default as low
+
 
 class OpenDoor(Thread):
     def run(self):
