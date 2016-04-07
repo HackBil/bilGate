@@ -1,11 +1,10 @@
-iPadDigit = function(selector, api, delay) {
+iPadDigit = function(selector, api) {
   this.selector = $(selector).not('.no-action');
   this.api      = api;
 
   this.inputs   = [];
 
   this.timer    = null;
-  this.delay    = delay;
 
   this.passwordSize = 5;
 };
@@ -26,8 +25,6 @@ iPadDigit.prototype.handleInputs = function() {
       self.inputs.push(value);
       self.displayInputs();
 
-      self.createTimer();
-
       if (self.inputs.length === 5) {
         self.sendData();
         setTimeout(function() {
@@ -41,37 +38,22 @@ iPadDigit.prototype.handleInputs = function() {
 iPadDigit.prototype.resetInput = function() {
   this.inputs = [];
   this.displayInputs();
-  clearInterval(this.timer);
 };
 
 iPadDigit.prototype.correctInput = function() {
   this.inputs.pop();
   this.displayInputs();
-  clearInterval(this.timer);
 };
 
 iPadDigit.prototype.displayInputs = function() {
-  if (this.inputDisplay) {
-    var self = this;
-    var displays = $("#digicode .password li");
-
-    for(var i =0; i< this.passwordSize; i++) {
-      displays.eq(i).text(self.inputs[i] || ' ');
-    }
-  }
-};
-
-iPadDigit.prototype.createTimer = function(resetTimer) {
   var self = this;
+  var displays = $("#digicode .password li");
 
-  if (this.timer !== null) {
-    clearInterval(this.timer);
+  for(var i =0; i< this.passwordSize; i++) {
+    displays.eq(i).text(self.inputs[i] || ' ');
   }
-
-  this.timer = setInterval(function() {
-    self.resetInput();
-  }, this.delay);
 };
+
 
 iPadDigit.prototype.sendData = function() {
   var postData = {
@@ -92,8 +74,7 @@ iPadDigit.prototype.sendData = function() {
   $.extend($.fn, {
     digicode: function(opts) {
       api   = opts.api || '/';
-      delay = opts.resetDelay * 1000 || 10000;
-      digi  = new iPadDigit(this, api, delay);
+      digi  = new iPadDigit(this, api);
       digi.handleInputs();
     }
   });
