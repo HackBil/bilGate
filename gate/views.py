@@ -8,7 +8,7 @@ import gate.door as door
 
 
 def index(request):
-    return render(request, 'index.html', {'door_opened': False})
+    return render(request, 'index.html', {'domain': request.get_host()})
 
 
 @csrf_exempt

@@ -18,7 +18,6 @@ class OpenDoor(Thread):
         GPIO.output(12, GPIO.HIGH)
         time.sleep(10)
         GPIO.output(12, GPIO.LOW)
-        GPIO.cleanup()
 
 
 def open():
