@@ -48,6 +48,6 @@ def twilioResponse(request):
         resp.say("Nous vous connectons à une personne qui peut venir vous ouvrir", language="fr-FR", voice="alice")
         dial = resp.dial()
         for contact in Contact.objects.order_by('-priority')[:5]:
-            dial.number(contact.phone, timeout=15)
+            dial.number(contact.phone, timeout=45)
 
     return HttpResponse(str(resp), status=200)
