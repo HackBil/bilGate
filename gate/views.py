@@ -1,11 +1,14 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 import twilio.twiml
 import time
+import pygame
 
-from gate.models import Code
+from gate.models import Code, Contact
 import gate.door as door
 
 
@@ -43,7 +46,9 @@ def twilioResponse(request):
         resp.play(digits="www#")
         resp.say("Vous pouvez maintenant entrer, veuillez sonnez à l'interphone sur la première porte à gauche, la porte sera ouverte automatiquement. Les locaux sont ensuite au premier étage, vous n'avez qu'a pousser la porte.", language="fr-FR", voice="alice")
     else:
-        resp.say("Une sonnerie a été déclanchée dans les locaux, quelqu'un va venir vous ouvrir", language="fr-FR", voice="alice")
-
+        resp.say("Nous vous connectons à une personne qui peut venir vous ouvrir", language="fr-FR", voice="alice")
+        dial = resp.dial()
+        for contact in Contact.objects.order_by('-priority')[:5]:
+            dial.number(contact.phone, timeout=15)
 
     return HttpResponse(str(resp), status=200)
