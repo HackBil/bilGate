@@ -1,3 +1,4 @@
 django==1.9.2
 docutils==0.12
 RPi.GPIO==0.6.1
+twilio==5.5.0
