@@ -6,7 +6,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import twilio.twiml
 import time
-import pygame
 
 from gate.models import Code, Contact
 import gate.door as door
