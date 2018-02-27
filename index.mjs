@@ -11,8 +11,8 @@ const SHOULD_MOCK_GPIO = process.env.SHOULD_MOCK_GPIO || false;
 
 const mockedGpio = {write: (val) => {}};
 
-const openSwitch = SHOULD_MOCK_GPIO ? mockedGpio : new Gpio.Gpio(6, 'out');
-const closeSwitch = SHOULD_MOCK_GPIO ? mockedGpio : new Gpio.Gpio(7, 'out');
+const openSwitch = SHOULD_MOCK_GPIO ? mockedGpio : new Gpio.Gpio(132, 'out');
+const closeSwitch = SHOULD_MOCK_GPIO ? mockedGpio : new Gpio.Gpio(133, 'out');
 let delayedSwitchActionTimeout;
 
 const app = new Koa();
