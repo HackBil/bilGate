@@ -6,7 +6,7 @@ import Gpio from 'chip-gpio';
 
 const PORT = process.env.PORT || 80;
 const CODE = process.env.CODE;
-const TIME_TO_OPERATE_SWITCH = process.env.TIME_TO_OPERATE_SWITCH || 5000;
+const TIME_TO_OPERATE_SWITCH = process.env.TIME_TO_OPERATE_SWITCH || 18000;
 const SHOULD_MOCK_GPIO = process.env.SHOULD_MOCK_GPIO || false;
 
 const mockedGpio = {write: (val) => {}};
