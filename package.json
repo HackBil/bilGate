@@ -1,0 +1,27 @@
+{
+  "name": "bilgate",
+  "version": "1.0.0",
+  "description": "BilGate ===========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-modules index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HackBil/bilGate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HackBil/bilGate/issues"
+  },
+  "homepage": "https://github.com/HackBil/bilGate#readme",
+  "dependencies": {
+    "chip-gpio": "^1.1.2",
+    "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2"
+  }
+}

@@ -1,38 +1,26 @@
 BilGate
 ===========
 
+## Requirements
+
+- NodeJS
+- `build-essential` package
+- A [C.H.I.P.](https://docs.getchip.com/chip.html) to run this on
+
 Install
 ---------
 * `git clone git@github.com:HackBil/bilGate.git` : retrieve the repo
 * `cd bilGate`
-* `virtualenv -p python3 --no-site-packages .v_env` : create a virtual-env for python code
-* `source .v_env/bin/activate` : activate the v_env
-* `pip install -r requirements.txt` : install all requirements
-* `python manage.py migrate` : Create the database
-* `python manage.py createsuperuser` : Create admin user who can edit db on /admin.
+* `npm install`
+* `npm start`
 
+## To start it on port 80
 
-How to use
-----------
-## In development
-#### Start the server
-```bash
-python manage.py runserver <ip:port>
-```
-* ` Then go on /admin and create 1 ou more codes (5 char only)`
+- `iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 5000`
+- `iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 5000`
 
-Documentation
--------------
-##POST /open
-####body
-```json
-{
-  "code": "A1234"
-}
-```
+## To keep it started even after a reboot
 
-#### Returns
-*200 OK* If door is opened
-
-*401 Unauthorized* If code is wrong
-
+- `sudo npm install -g pm2`
+- `pm2 start`
+- `pm2 save`
