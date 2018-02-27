@@ -4,7 +4,7 @@ import KoaRouter from 'koa-router';
 import KoaBodyParser from 'koa-bodyparser';
 import Gpio from 'chip-gpio';
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 80;
 const CODE = process.env.CODE;
 const TIME_TO_OPERATE_SWITCH = process.env.TIME_TO_OPERATE_SWITCH || 5000;
 const SHOULD_MOCK_GPIO = process.env.SHOULD_MOCK_GPIO || false;
