@@ -14,7 +14,7 @@ const createGpio = ({chipGpio, raspberryGpio}) => {
   if (CHIP_GPIO) {
     return new chipGpio.Gpio(chipGpio, 'out');
   }
-  rpiGpio.setup(raspberryGpio, gpio.DIR_OUT, 'none');
+  rpiGpio.setup(raspberryGpio, raspberryGpio.DIR_OUT, 'none');
   return {
     write: (val) => rpiGpio.write(raspberryGpio, val ? true : false),
     unexport: () => rpiGpio.destroy()
