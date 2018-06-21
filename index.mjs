@@ -3,6 +3,7 @@ import KoaStatic from 'koa-static';
 import KoaRouter from 'koa-router';
 import KoaBodyParser from 'koa-bodyparser';
 import { unexportAll, writeCloseSwitch, writeOpenSwitch } from './gpio';
+import moment from 'moment-timezone';
 
 const PORT = process.env.PORT || 80;
 const CODE = process.env.CODE;
@@ -28,7 +29,7 @@ router.post('/command', async (ctx) => {
   ctx.assert(ctx.request.body.code === CODE, 401, 'Invalid code');
   ctx.assert(['OPEN', 'CLOSE'].includes(ctx.request.body.operation), 400, 'Operation should be OPEN or CLOSE');
   stopAllSwitches();
-  console.log(ctx.request.body.operation === 'OPEN' ? 'Opening' : 'Closing');
+  console.log((ctx.request.body.operation === 'OPEN' ? 'Opening' : 'Closing') + ' at ' + moment().tz("Europe/Monaco").format('YYYY-MM-DD HH:mm:ssZ'));
   const switchToUse = ctx.request.body.operation === 'OPEN' ? writeOpenSwitch : writeCloseSwitch;
   switchToUse(1);
   setTimeout(() => {

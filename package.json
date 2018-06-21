@@ -23,6 +23,7 @@
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
+    "moment-timezone": "^0.5.20",
     "rpi-gpio": "^0.9.1"
   }
 }
