@@ -6,15 +6,20 @@
 # must run as root, as the npm logs are only readable by root
 
 # install with `sudo crontab -e` and adding the line:
-#   0 0-8,21,22,23 * * * /home/pi/bilGate/cron.sh
+# execute from 9PM to 8AM,
+# (times are in UTC, not local - will have to change daylight saving times )
+# 
+#   0 0-6,19-23 * * * /home/pi/bilGate/cron.sh
 
 # Also require ssmtp installed, for example using the instructions from http://iqjar.com/jar/sending-emails-from-the-raspberry-pi/
 
 export LANG=C.UTF-8
 
+LOG="$(cat /root/.pm2/logs/npm-out-0.log)"
+
 LAST_OPEN=$(grep -a -E 'Closing|Opening' /root/.pm2/logs/npm-out-0.log | tail -1)
 if [[ "$LAST_OPEN" == Opening* ]]; then
-    mail -s 'BIL Gate ouverte ?' solene@boostinlyon.fr <<EOF
+    mail -s 'TEST - BIL Gate ouverte ?' solene@boostinlyon.fr,francois@granade.com <<EOF
 
 La dernière opération sur la porte a été une ouverture: $LAST_OPEN
 
@@ -27,6 +32,14 @@ Donc si vous cessez de le recevoir dans la nuit, c'est une bonne nouvelle :)
 Bil Gates
 
 PS : http://bilgate.boostinlyon.fr est uniquement utilisable si vous êtes connecté au wifi de BILotière : pas la peine d’essayer depuis votre lit… si, si, il va falloir envoyer quelqu’un… :)
+
+
+
+-------
+
+Complete log file:
+
+$LOG
 
 EOF
 fi
